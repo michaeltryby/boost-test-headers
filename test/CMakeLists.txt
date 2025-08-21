@@ -17,3 +17,10 @@ target_link_libraries(
     PRIVATE
         boost_test_headers
 )
+
+add_test(
+    NAME
+        first_test
+    COMMAND
+        first_test
+)

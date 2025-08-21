@@ -3,4 +3,4 @@
 
 # boost test headers
 
-Example using FetchPackages to manage boost-test dependency
+Example using FetchContent to manage boost-test dependency

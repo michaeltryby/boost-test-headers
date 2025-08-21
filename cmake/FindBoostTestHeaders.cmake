@@ -8,6 +8,7 @@
 #
 #  Usage:
 #    find_package(BoostTestHeaders REQUIRED)
+#     ...
 #    target_link_libraries(<your_target> PRIVATE boost_test_headers)
 #
 #  Repository:
@@ -18,17 +19,21 @@
 #  License: MIT
 #
 
-cmake_policy(SET CMP0169 OLD)
-
 if(TARGET boost_test_headers)
     return()  # Already created
 endif()
+
+cmake_policy(PUSH)
+if(POLICY CMP0169)
+    cmake_policy(SET CMP0169 OLD)  # flip to NEW once you migrate off the old behavior
+endif()
+
 
 include(FetchContent)
 
 set(
   BOOST_VERSION
-    "1.88.0"
+    1.88.0
 )
 
 set(
@@ -65,5 +70,7 @@ endforeach()
 
 # Mark as found
 set(
-    boost_test_headers_FOUND TRUE
+     BoostTestHeaders_FOUND TRUE
 )
+
+cmake_policy(POP)

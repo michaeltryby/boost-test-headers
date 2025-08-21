@@ -1,6 +1,12 @@
 
 
 
+
+find_package(
+  BoostTestHeaders
+    REQUIRED
+)
+
 add_executable(
   first_test
     first_test.cpp

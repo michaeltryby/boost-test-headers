@@ -7,7 +7,7 @@
 #    target 'boost_test_headers' with all necessary include paths.
 #
 #  Usage:
-#    include(cmake/FindBoostTestHeaders.cmake)
+#    find_package(BoostTestHeaders REQUIRED)
 #    target_link_libraries(<your_target> PRIVATE boost_test_headers)
 #
 #  Repository:
@@ -23,7 +23,6 @@ cmake_policy(SET CMP0169 OLD)
 if(TARGET boost_test_headers)
     return()  # Already created
 endif()
-
 
 include(FetchContent)
 

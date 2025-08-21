@@ -20,10 +20,10 @@
 
 cmake_policy(SET CMP0169 OLD)
 
-
 if(TARGET boost_test_headers)
     return()  # Already created
 endif()
+
 
 include(FetchContent)
 
@@ -34,28 +34,9 @@ set(
 
 set(
   BOOST_TEST_DEPS
-  algorithm
-  assert
-  bind
-  config
-  core
-  detail
-  exception
-  function
-  io
-  iterator
-  move
-  mp11
-  mpl
-  numeric_conversion
-  preprocessor
-  range
-  smart_ptr
-  static_assert
-  test
-  throw_exception
-  type_traits
-  utility
+    algorithm assert bind config core detail exception function io iterator
+    move mp11 mpl numeric_conversion preprocessor range smart_ptr static_assert
+    test throw_exception type_traits utility
 )
 
 foreach(lib IN LISTS BOOST_TEST_DEPS)
@@ -69,7 +50,6 @@ foreach(lib IN LISTS BOOST_TEST_DEPS)
     )
 endforeach()
 
-
 # Create INTERFACE library with all include paths
 add_library(
   boost_test_headers
@@ -82,6 +62,7 @@ foreach(lib IN LISTS BOOST_TEST_DEPS)
         INTERFACE
             ${boost${lib}_SOURCE_DIR}/include)
 endforeach()
+
 
 # Mark as found
 set(

@@ -9,12 +9,6 @@ list(
         CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake"
 )
 
-set(
-    FETCHCONTENT_UPDATES_DISCONNECTED
-        ON CACHE BOOL
-        "Disable FetchContent updates during normal builds"
-)
-
 
 project(MyProject)
 

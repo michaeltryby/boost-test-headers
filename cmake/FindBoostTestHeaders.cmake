@@ -87,6 +87,6 @@ set(
      BoostTestHeaders_FOUND TRUE
 )
 
-message(STATUS "BoostTestHeaders found")
+message(STATUS "Found BoostTestHeaders")
 
 cmake_policy(POP)

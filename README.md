@@ -13,7 +13,7 @@ Use FetchContent to manage boost-test dependency
 
 ## Usage Summary
 
-The easiest way to use this repository is to copy `FindBoostTestHeaders.cmake` into your project, add it to your CMake module path, and call `find_package(BoostTestHeaders)` and link with `boost-test-headers` when building your tests.
+The easiest way to use this repository is to copy `FindBoostTestHeaders.cmake` into your project, add it to your CMake module path, call `find_package(BoostTestHeaders)`, and link with `boost-test-headers` when building your tests.
 
 ### Step-by-Step Usage
 

@@ -3,7 +3,7 @@
 
 # boost test headers
 
-Use FetchContent to manage boost-test dependency
+Use cmake FetchContent to manage boost-test dependency
 
 ## Why Use BoostTestHeaders?
 

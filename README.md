@@ -7,7 +7,7 @@ Use cmake FetchContent to manage boost-test dependency
 
 ## Why Use BoostTestHeaders?
 
-- No need to download or configure the full Boost library.
+- No need to configure vcpkg or download the full Boost library.
 - Simplifies CMake dependency management for C++ unit testing.
 - Provides a header-only approach for Boost.Test in your project.
 

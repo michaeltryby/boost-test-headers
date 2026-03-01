@@ -14,7 +14,7 @@
 #  Repository:
 #    https://github.com/michaeltryby/boost-test-headers
 #
-#  Copyright (c) 2025 Michael E. Tryby
+#  Copyright (c) 2025-2026 Michael E. Tryby
 #
 #  License: MIT
 #
@@ -56,38 +56,57 @@ set(
 
 set(
   BOOST_TEST_DEPS
-    algorithm assert bind config core detail exception function io iterator
-    move mp11 mpl numeric_conversion preprocessor range smart_ptr static_assert
-    test throw_exception type_traits utility
+    algorithm assert bind config core detail exception function io 
+    iterator move mp11 mpl numeric_conversion preprocessor range 
+    smart_ptr static_assert test throw_exception type_traits utility
+)
+
+# Create INTERFACE library with all include paths
+add_library(
+  boost_test_headers 
+    INTERFACE
+)
+add_library(
+  Boost::test_headers 
+    ALIAS 
+      boost_test_headers
+)
+
+set(
+  boost_includes ""
 )
 
 foreach(lib IN LISTS BOOST_TEST_DEPS)
     message(VERBOSE "  - Processing boost::${lib}")
 
     FetchContent_Declare(
-      Boost${lib}
-        URL https://github.com/boostorg/${lib}/archive/refs/tags/boost-${BOOST_VERSION}.tar.gz
+      boost_${lib}
+        URL https://codeload.github.com/boostorg/${lib}/tar.gz/refs/tags/boost-${BOOST_VERSION}
         DOWNLOAD_EXTRACT_TIMESTAMP TRUE
     )
-    # TODO: To be deprecated (See CMP0169). Need work around
+    
+    # We intentionally use FetchContent only as a download mechanism.
+    # FetchContent_MakeAvailable() would configure Boost subprojects, which
+    # we explicitly do not want. Hence, the call to FetchContent_Populate().
     FetchContent_Populate(
-      Boost${lib}
+      boost_${lib}
+    )
+
+    # Collect all include directories in one list
+    list(
+      APPEND 
+        boost_includes 
+          "${boost_${lib}_SOURCE_DIR}/include"
     )
 endforeach()
 
-# Create INTERFACE library with all include paths
-add_library(
-  boost_test_headers INTERFACE
-)
-add_library(
- Boost::test_headers ALIAS boost_test_headers
-)
 
-foreach(lib IN LISTS BOOST_TEST_DEPS)
-    target_include_directories(
-        boost_test_headers
-            INTERFACE ${boost${lib}_SOURCE_DIR}/include)
-endforeach()
+target_include_directories(
+  boost_test_headers 
+    PUBLIC  
+      INTERFACE 
+        ${boost_includes}
+)
 
 
 # Set standard find_package variables
